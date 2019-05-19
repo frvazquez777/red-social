@@ -33,6 +33,4 @@ app.use('/api', publication_routes);
 app.use('/api', message_routes);
 
 //exportar configuracion
-
-
 module.exports = app;

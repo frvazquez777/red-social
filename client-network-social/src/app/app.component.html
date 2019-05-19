@@ -1,0 +1,107 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<!-- SECCION NAVEGACIÓN-->
+<nav class="navbar navbar-dark bg-dark navbar-expand-md fixed-top">
+  <div class="container">
+    <a href="#" class="navbar-brand">
+      <strong>{{title}}</strong>
+    </a>
+
+    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#menu-principal"
+      aria-controls="menu-principal" aria-expanded="false" aria-label="Desplegar menú de navegación">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="menu-principal">
+
+      <ul class="navbar-nav ml-auto" *ngIf="identity">
+        <li class="nav-item">
+          <a [routerLink]="['/home']" [routerLinkActive]="[nav-link]"  class="nav-link active">
+            <i class="fa fa-home" aria-hidden="true"></i>
+            Inicio
+          </a>
+        </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa fa-list" aria-hidden="true"></i>
+            Timeline
+          </a>
+          </li>
+        <li class="nav-item">
+          <a href="#" class="nav-link">
+            <i class="fa fa-user-o" aria-hidden="true"></i>
+            Proyectos
+          </a>
+        </li>
+      <!-- </ul> -->
+
+      <!-- <ul class="navbar-nav ml-auto" *ngIf="identity"> -->
+
+          <!-- <li class="nav-item">
+            <a class="nav-link avatar" >
+              <i class="fa fa-user-circle" aria-hidden="true"></i>
+              Avatar</a>
+          </li> -->
+          
+        <div class="dropdown-divider"></div>
+        <li class="nav-item dropdown nav-tabs">
+          <a class="nav-link dropdown-toggle" data-toggle="dropdown">
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            {{identity.nick}}
+          </a>
+
+          <ul class="dropdown-menu" aria-haspopup="true" aria-expanded="false">
+              <li class="dropdown-item">
+                  <a href="#" [routerLink]="['/login']" class="nav-link">
+                    <i class="fa fa-user-circle-o" aria-hidden="true"></i>
+                    Mi Perfil
+                  </a>
+              </li>
+              <li class="dropdown-item">
+                  <a href="#" [routerLink]="['/mis-datos']" class="nav-link">
+                    <i class="fa fa-vcard" aria-hidden="true"></i>
+                    Mis Datos
+                  </a>
+              </li>
+              <li class="dropdown-item">
+                  <a href="#" (click)="logout()" class="nav-link pointer">
+                    <i class="fa fa-unlock-alt" aria-hidden="true"></i>
+                    Cerrar Sesión
+                  </a>
+              </li>
+          </ul>
+        </li>
+      </ul>
+
+      <ul class="navbar-nav ml-auto nav-tabs" *ngIf="!identity">
+        <li class="nav-item">
+          <a [routerLink]="['/login']" [routerLinkActive]="[nav-link]" class="nav-link" >
+            <i class="fa fa-user-circle" aria-hidden="true"></i>
+            Login</a>
+        </li>
+        <li class="nav-item">
+          <a [routerLink]="['/register']" [routerLinkActive]="[nav-link]" class="nav-link">
+            <i class="fa fa-address-book" aria-hidden="true"></i>
+            Registro</a>
+        </li>
+      </ul>
+
+    </div>
+  </div>
+</nav>
+<br>
+<br>
+<br>
+<!-- SECCION -->
+ <section class="container-fluid">
+    <!--<home-root></home-root>-->
+    <router-outlet></router-outlet>
+    
+</section> 
+
+
+<!-- SECCION PIE DE PÁGINA -->
+<footer class="pie-de-pagina text-center text-md-right bg-dark text-white">
+  <div class="container">
+    <p class="text-center text-uppercase m-2 p-1 ">Copyright © 2018. Todos los derechos reservados. </p>
+  </div>
+</footer>

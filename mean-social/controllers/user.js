@@ -97,7 +97,7 @@ function loginUser(req, res) {
                         return res.status(200).send({user: user});
                     }
                 }else {
-                    return res.status(404).send({message: 'Usuario/Clave no validas'});
+                    return res.status(200).send({message: 'Usuario/Clave no validas'});
                 }
             });
         } else {
@@ -225,13 +225,26 @@ function updateUser(req, res) {
     delete update.password;
 
     if(userId != req.user.sub) return res.status(403).send({message: 'Not Authorization Updated User'});
-    User.findByIdAndUpdate(userId, update, {new: true}, (err, userUpdated) => {
-        if(err) return res.status(500).send({message: 'Error en el servidor'});
 
-        if(!userUpdated) return res.status(404).send({message: 'Updated faild'});
+    //controlar los usuarios existentes
+    User.findOne({ $or:  [
+        {email: update.email.toLowerCase()},
+        {nick: update.nick.toLowerCase()}
+    ]}).exec((err, user) => {
 
-        return res.status(200).send({user: userUpdated});
+        if(user && user._id != userId) return res.status(200).send({message: 'Los datos ya estan en uso.'});
+      
+        User.findByIdAndUpdate(userId, update, {new: true}, (err, userUpdated) => {
+            if(err) return res.status(500).send({message: 'Error en el servidor'});
+    
+            if(!userUpdated) return res.status(404).send({message: 'Updated faild'});
+    
+            return res.status(200).send({user: userUpdated});
+        });
+        
+
     });
+ 
 }
 
 //subir avatar

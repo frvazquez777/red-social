@@ -1,0 +1,40 @@
+<div class="row">
+    <div class="col-12 col-sm-10 offset-sm-1 col-md-8 offset-md-2 col-lg-6 offset-lg-4">
+        <br>
+        <br>
+        <h1 class="h1-strong">{{title}}</h1>
+        <br>
+        <form #userEditForm="ngForm" (ngSubmit)="obSubmit()">
+                <p>
+                    <label for="name">Nombre</label>
+                    <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control" required />
+                    <br>
+                    <span *ngIf="!name.value && name.touched"s>El Nombre es Obligatorio</span>
+                </p>
+                <p>
+                    <label for="surname">Apellidos</label>
+                    <input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control" required />
+                    <br>
+                    <span *ngIf="!surname.value && surname.touched"s>Los Aellidos son Obligatorios</span>
+                </p>
+                <p>
+                    <label for="nick">Nick</label>
+                    <input type="text" name="nick" #nick="ngModel" [(ngModel)]="user.nick" class="form-control" required />
+                    <br>
+                    <span *ngIf="!nick.value && nick.touched"s>El Nick es Obligatorio</span>
+                </p>
+                <p>
+                    <label for="email">Correo Electronico</label>
+                    <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control" required />
+                    <br>
+                    <span *ngIf="!email.value && email.touched"s>El Correo Electronico es Obligatorio</span>
+                </p>
+                <br>
+                <div class="aler alert-success" *ngIf="status== 'success'">Actualizacion Correctamente</div>
+                 <div class="aler alert-danger" *ngIf="status== 'error'">{{message}}</div>
+                <br>
+                <input type="submit" value="Actualizar {{title}}" class="btn btn-primary btn-lg btn-block" [disabled]="!userEditForm.form.valid" />
+        </form>
+
+    </div>
+</div>
