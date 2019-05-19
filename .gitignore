@@ -9,6 +9,9 @@
 
 # dependencies
 /mean-social/node_modules
+/client-network-social/node_modules
+/client-network-social/e2e
+/client-network-social/.gitignores
 
 # profiling files
 chrome-profiler-events.json
